@@ -25,6 +25,7 @@ const BALL_DEFAULT_SPEEDX = 4
 const BALL_DEFAULT_SPEEDY = 2
 const Y_MARGIN = 30
 const BALL_R = 5
+const Y_PADDLE_COL = Y_MARGIN + PLAYER_WIDTH + BALL_R
 
 class Player {
   constructor(canvas: HTMLCanvasElement) {
@@ -127,9 +128,15 @@ class Game {
       this.ball.speed.y *= -1
     }
     // Player collision
-    if (this.ball.x > this.canvas.width - Y_MARGIN - PLAYER_WIDTH - BALL_R) {
+    if (
+      this.ball.x > this.canvas.width - Y_PADDLE_COL &&
+      this.ball.x <= this.canvas.width - Y_PADDLE_COL + this.ball.speed.x
+    ) {
       this.collide(this.oppenent)
-    } else if (this.ball.x < Y_MARGIN + PLAYER_WIDTH + BALL_R) {
+    } else if (
+      this.ball.x < Y_PADDLE_COL &&
+      this.ball.x >= Y_PADDLE_COL + this.ball.speed.x
+    ) {
       this.collide(this.player)
     }
     // Point scored
