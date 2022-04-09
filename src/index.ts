@@ -142,8 +142,12 @@ class Game {
     // Point scored
     if (this.ball.x >= this.canvas.width) {
       this.score(this.player)
+      let score = document.querySelector('#player-score') as HTMLElement
+      score.textContent = this.player.score.toString()
     } else if (this.ball.x <= 0) {
       this.score(this.oppenent)
+      let score = document.querySelector('#oppenent-score') as HTMLElement
+      score.textContent = this.oppenent.score.toString()
     }
     // Actual move
     this.ball.x += this.ball.speed.x
